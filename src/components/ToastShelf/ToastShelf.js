@@ -3,11 +3,7 @@ import React from "react";
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
 
-function ToastShelf({ toastList, setToastList }) {
-  function handleDismiss(id) {
-    const nextToastList = toastList.filter((toast) => toast.id !== id);
-    setToastList(nextToastList);
-  }
+function ToastShelf({ toastList, handleDismiss }) {
   return (
     <ol className={styles.wrapper}>
       {toastList.map(({ id, variant, message }) => (

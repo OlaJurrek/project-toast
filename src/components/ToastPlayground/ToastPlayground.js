@@ -21,13 +21,18 @@ function ToastPlayground() {
     setVariant(VARIANT_OPTIONS[0]);
   }
 
+  function handleDismiss(id) {
+    const nextToastList = toastList.filter((toast) => toast.id !== id);
+    setToastList(nextToastList);
+  }
+
   return (
     <div className={styles.wrapper}>
       <header>
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      <ToastShelf toastList={toastList} setToastList={setToastList} />
+      <ToastShelf toastList={toastList} handleDismiss={handleDismiss} />
       <form className={styles.controlsWrapper} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label
