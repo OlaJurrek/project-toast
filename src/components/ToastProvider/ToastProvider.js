@@ -13,8 +13,22 @@ function ToastProvider({ children }) {
     const nextToasts = toasts.filter((toast) => toast.id !== id);
     setToasts(nextToasts);
   }
+
+  React.useEffect(() => {
+    function handleEscape(e) {
+      if (e.code === "Escape" && toasts.length > 0) {
+        setToasts([]);
+      }
+    }
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [toasts]);
   return (
-    <ToastContext.Provider value={{ toasts, createToast, removeToast }}>
+    <ToastContext.Provider
+      value={{ toasts, createToast, removeToast, setToasts }}
+    >
       {children}
     </ToastContext.Provider>
   );
