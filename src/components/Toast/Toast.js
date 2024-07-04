@@ -28,8 +28,11 @@ function Toast({ id, children, variant = "notice" }) {
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
-      <VisuallyHidden>{variant} - </VisuallyHidden>
-      <p className={styles.content}>{children}</p>
+
+      <p className={styles.content}>
+        <VisuallyHidden>{variant} - </VisuallyHidden>
+        {children}
+      </p>
       <button
         className={styles.closeButton}
         onClick={() => removeToast(id)}
